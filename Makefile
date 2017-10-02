@@ -18,7 +18,7 @@ PROJ=ringbuffer
 main: main.o $(PROJ).o
 	gcc main.o $(PROJ).o -o main $(LDFLAGS)
 
-test: Gtest_main.o testcase.o $(PROJ)_test.o  libgtest.a   
+test: Gtest_main.o testcase.o $(PROJ)_test.o  $(GTEST_LIB)   ## REMARK: remove libgtest.a
 	g++  $(LDFLAGS) -pthread $(PROJ)_test.o testcase.o Gtest_main.o $(GTEST_LIB) -o test
 
 ########## Normal ###########
