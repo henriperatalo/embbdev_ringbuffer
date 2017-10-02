@@ -2,7 +2,7 @@
 # make test - to compile for unit testing 
 
 #use this if googletest locally installed
-GTEST_DIR=/u/h/e1401187/Kurssit/EmbeddedSystems/googletest-master/googletest
+GTEST_DIR=~/googletest/googletest
 GTEST_INCLUDE=-I $(GTEST_DIR)/include
 GTEST_LIB=libgtest.a
 
