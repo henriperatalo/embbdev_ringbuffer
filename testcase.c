@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include "ringbuffer.h"
-
+//n‰‰ on pathaat testit
 TEST(SuperTEST,INIT)
 {
 unsigned char buff[MAX_BUFFER];
