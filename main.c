@@ -11,4 +11,5 @@ int main(void)
 
   init_buffer(&tb,transmission_buffer);
 
+return 0;
 }
