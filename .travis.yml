@@ -1,14 +1,14 @@
-'language: c
+language: c
 compiler:
   - gcc
 os: linux
 dist: trusty
 before_install:
- - sudo apt-get -qq update
- - cd
- - git clone https://github.com/google/googletest.git
- - which valgrind
- - cd "${TRAVIS_BUILD_DIR}"
+    - sudo apt-get -qq update
+    - cd
+    - git clone https://github.com/google/googletest.git
+    - which valgrind
+    - cd "${TRAVIS_BUILD_DIR}"
 
 before_script:
     - make test
