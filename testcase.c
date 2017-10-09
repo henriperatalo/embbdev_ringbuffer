@@ -262,7 +262,7 @@ TEST(RingBuffer_get_char_from_buffer, one)
   len = get_buffer_state(b,&err);
 
   EXPECT_EQ(len, -1);
-  EXPECT_EQ(err, OK);
+  EXPECT_EQ(err, BUFF_OK);
   EXPECT_EQ(b.head, buff);
   EXPECT_EQ(b.tail, buff);
   EXPECT_EQ(b.buffer, buff);
@@ -289,7 +289,7 @@ TEST(RingBuffer_get_char_from_buffer, multiple)
 
     len = get_buffer_state(b,&err);
     EXPECT_EQ(len, 10 - i);
-    EXPECT_EQ(err, OK);
+    EXPECT_EQ(err, BUFF_OK);
     EXPECT_EQ(b.head, buff + 10 - i);
     EXPECT_EQ(b.tail, buff + 10 - i);
     EXPECT_EQ(b.buffer, buff);
@@ -320,7 +320,7 @@ TEST(RingBuffer_get_char_from_buffer, add_get)
   for (i = 0; i < 10; i++)  {
     len = add_char_to_buffer(&b, 'a', &err);
     EXPECT_EQ(len, 1);
-    EXPECT_EQ(err, OK);
+    EXPECT_EQ(err, BUFF_OK);
     EXPECT_EQ(b.head, buff + i);
     EXPECT_EQ(b.tail, buff + i - 1);
     EXPECT_EQ(b.buffer, buff);
@@ -328,7 +328,7 @@ TEST(RingBuffer_get_char_from_buffer, add_get)
 
     len = get_char_from_buffer(&b, &err);
     EXPECT_EQ(len, 0);
-    EXPECT_EQ(err, OK);
+    EXPECT_EQ(err, BUFF_OK);
     EXPECT_EQ(b.head, buff + i + 1);
     EXPECT_EQ(b.tail, buff + i);
     EXPECT_EQ(b.buffer, buff);
@@ -365,7 +365,7 @@ TEST(RingBuffer_add_char_to_buffer, big_test)
   EXPECT_EQ(0, b.tail - buff); // must not change
   EXPECT_EQ(buff, b.buffer); // must not change
   EXPECT_EQ(buff[0], 'a');
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 
   SCOPED_TRACE("Second");
   add_char_to_buffer(&b, 'b', &err);
@@ -373,7 +373,7 @@ TEST(RingBuffer_add_char_to_buffer, big_test)
   EXPECT_EQ(2, b.head - buff);
   EXPECT_EQ(0, b.tail - buff);
   EXPECT_EQ(buff[1], 'b');
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 
 
   SCOPED_TRACE("Third");
@@ -382,7 +382,7 @@ TEST(RingBuffer_add_char_to_buffer, big_test)
   EXPECT_EQ(0, b.tail - buff);
   EXPECT_EQ(buff, b.buffer);
   EXPECT_EQ(buff[2], 'c');
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 
   SCOPED_TRACE("Fourth");
   add_char_to_buffer(&b, 'd', &err);
@@ -390,7 +390,7 @@ TEST(RingBuffer_add_char_to_buffer, big_test)
   EXPECT_EQ(0, b.tail - buff);
   EXPECT_EQ(buff, b.buffer);
   EXPECT_EQ(buff[3], 'd');
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 
 }
 
@@ -428,14 +428,14 @@ TEST(RingBuffer_get_char_from_buffer, big)
   EXPECT_EQ(5, b.head - buff);
   EXPECT_EQ(1, b.tail - buff);
   EXPECT_EQ(buff, b.buffer);
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 
   c = get_char_from_buffer(&b, &err);
   EXPECT_EQ('b', c);
   EXPECT_EQ(5, b.head - buff);
   EXPECT_EQ(2, b.tail - buff);
   EXPECT_EQ(buff, b.buffer);
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 
 //   print_buffer(b);
   c = get_char_from_buffer(&b, &err);
@@ -443,7 +443,7 @@ TEST(RingBuffer_get_char_from_buffer, big)
   EXPECT_EQ(5, b.head - buff);
   EXPECT_EQ(3, b.tail - buff);
   EXPECT_EQ(buff, b.buffer);
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 
   //  print_buffer(b);
   c = get_char_from_buffer(&b, &err);
@@ -451,14 +451,14 @@ TEST(RingBuffer_get_char_from_buffer, big)
   EXPECT_EQ(5, b.head - buff);
   EXPECT_EQ(4, b.tail - buff);
   EXPECT_EQ(buff, b.buffer);
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 //   print_buffer(b);
   c = get_char_from_buffer(&b, &err);
   EXPECT_EQ('e', c);
   EXPECT_EQ(5, b.head - buff);
   EXPECT_EQ(5, b.tail - buff);
   EXPECT_EQ(buff, b.buffer);
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 
   //  print_buffer(b);
 
@@ -500,7 +500,7 @@ TEST(RingBuffer, filltest)
   EXPECT_EQ(0, b.tail - buff);
   EXPECT_EQ(buff, b.buffer);
   EXPECT_EQ(buff[MAX_BUFFER - 3], 'a');
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 
   /* Fill still one */
 
@@ -510,7 +510,7 @@ TEST(RingBuffer, filltest)
   EXPECT_EQ(0, b.tail - buff);
   EXPECT_EQ(buff, b.buffer);
   EXPECT_EQ(buff[MAX_BUFFER - 2], 'a');
-  //EXPECT_EQ(BUFF_OK, err);
+  //EXPECT_EQ(BUFF_BUFF_OK, err);
 
   /* Try to fill over */
 
@@ -551,7 +551,7 @@ TEST(RingBuffer, fill_get_test)
     EXPECT_EQ(0, b.tail - buff); // tail pointer wont change
     EXPECT_EQ(buff, b.buffer);
     EXPECT_EQ(buff[100 - 3], 'a');
-    EXPECT_EQ(BUFF_OK, err);
+    EXPECT_EQ(BUFF_BUFF_OK, err);
   }
 
   {
@@ -562,7 +562,7 @@ TEST(RingBuffer, fill_get_test)
       EXPECT_EQ(buff, b.buffer);
       EXPECT_EQ(i + 1, b.tail - buff);
       EXPECT_EQ(buff[100 - i - 1], 'a');
-//EXPECT_EQ(BUFF_OK,err);
+//EXPECT_EQ(BUFF_BUFF_OK,err);
     }
     SCOPED_TRACE("Filled with 100");
   }
@@ -572,7 +572,7 @@ TEST(RingBuffer, fill_get_test)
   EXPECT_EQ(100, b.tail - buff);
   EXPECT_EQ(buff, b.buffer);
   EXPECT_EQ(buff[100 - 2], 'a');
-  EXPECT_EQ(BUFF_OK, err);
+  EXPECT_EQ(BUFF_BUFF_OK, err);
 
 }
 
