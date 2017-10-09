@@ -123,14 +123,14 @@ TEST(RingBuffer_get_buffer, add_10)
     EXPECT_EQ(b.buffer, buff);
     EXPECT_EQ(buff[i - 1], 'a' + ((i - 1) % 27));
 
-    c = get_buffer_state(b);
+    c = get_buffer_state(b,&err);
     EXPECT_EQ(c, 'a' + (i - 1) % 27);
     EXPECT_EQ(b.head, buff + i);
     EXPECT_EQ(b.tail, buff + i);
     EXPECT_EQ(b.buffer, buff);
   }
 
-  len = get_buffer_state(b);
+  len = get_buffer_state(b,&err);
   EXPECT_EQ(len, 10);
 
   EXPECT_EQ(b.head, buff + 10);
@@ -202,10 +202,10 @@ TEST(RingBuffer_add_char_to_buffer, fill_over)
   c = get_char_from_buffer(&b, &err);
   EXPECT_EQ(c, 'a');
 
-  len = get_buffer_state(b);
+  len = get_buffer_state(b,&err);
   EXPECT_EQ(len, MAX_BUFFER);
 
-  len = get_buffer_state(b);
+  len = get_buffer_state(b,&err);
   //EXPECT_EQ(len, ERROR);
   EXPECT_EQ(err, BUFFER_FULL);
 
