@@ -14,7 +14,7 @@ void empty_buffer(struct buffer_type *b)
 	b->tail=b->head;
 };
 
-signed int get_buffer_state(struct buffer_type b, error_type *err)
+signed int get_buffer_state(struct buffer_type b, enum error_type *err)
 {
 	int length=b.head-b.tail;
 
@@ -33,7 +33,7 @@ signed int get_buffer_state(struct buffer_type b, error_type *err)
 		return -1;
 		};
 };
-int add_char_to_buffer(struct buffer_type *b, unsigned char c, error_type *err)
+int add_char_to_buffer(struct buffer_type *b, unsigned char c, enum error_type *err)
 {
 	if(b->head<(b->buffer+MAX_BUFFER-1))
 		{
@@ -52,9 +52,9 @@ int add_char_to_buffer(struct buffer_type *b, unsigned char c, error_type *err)
 			return -1;
 		};
 	*err= OK;
-	return get_buffer_status(*b,err);
+	return get_buffer_state(*b,err);
 };
-unsigned char get_char_from_buffer(struct buffer_type *b, error_type *err)
+unsigned char get_char_from_buffer(struct buffer_type *b, enum error_type *err)
 {
 	unsigned char reijo;
 	if(b->tail<(b->buffer+MAX_BUFFER-1) && (b->tail!=b->head))
@@ -76,7 +76,7 @@ unsigned char get_char_from_buffer(struct buffer_type *b, error_type *err)
 	return reijo;
 	
 };
-int print_buffer(struct buffer_type b, error_type *err)
+int print_buffer(struct buffer_type b, enum error_type *err)
 {
 	unsigned char *head=b.head;
 	unsigned char *tail=b.tail;
@@ -112,10 +112,10 @@ int print_buffer(struct buffer_type b, error_type *err)
 	return amount;
 };
 
-int add_string_to_buffer(struct buffer_type *b, unsigned char *s, error_type *err)
+int add_string_to_buffer(struct buffer_type *b, unsigned char *s, enum error_type *err)
 {
 	int check1,check2,i;
-	check1=get_buffer_status(*b,err);
+	check1=get_buffer_state(*b,err);
 	check2=my_strlen(s);
 	
 	if(check2 <= (MAX_BUFFER-check1))
@@ -134,7 +134,7 @@ int add_string_to_buffer(struct buffer_type *b, unsigned char *s, error_type *er
 		};
 	
 };
-int  get_string_from_buffer(struct buffer_type *b, unsigned char *dest, int len, error_type *err)
+int  get_string_from_buffer(struct buffer_type *b, unsigned char *dest, int len, enum error_type *err)
 {
 	int i;
 			
