@@ -470,7 +470,7 @@ TEST(RingBuffer_get_char_from_buffer, big)
   EXPECT_EQ(buff, b.buffer);
   EXPECT_EQ(BUFFER_EMPTY, err);
 
-  print_buffer(b);
+  print_buffer(b,&err);
 
 }
 
@@ -609,7 +609,7 @@ TEST(RingBuffer_add_string_to_buffef, string)
 {
   struct buffer_type b;
   error_type err;
-  unsigned char buff[MAX_BUFFER];
+ // unsigned char buff[MAX_BUFFER];
   unsigned char str[] = "Test string";
 
   empty_buffer(&b);
