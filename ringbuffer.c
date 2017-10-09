@@ -24,7 +24,7 @@ signed int get_buffer_state(struct buffer_type b, enum error_type *err)
 		}
 	if(length>=0 && length<=MAX_BUFFER)
 		{
-		*err= OK;
+		*err= BUFF_OK;
 		return length;
 		}
 	else
@@ -51,7 +51,7 @@ int add_char_to_buffer(struct buffer_type *b, unsigned char c, enum error_type *
 			*err= BUFFER_FULL;
 			return -1;
 		};
-	*err= OK;
+	*err= BUFF_OK;
 	return get_buffer_state(*b,err);
 };
 unsigned char get_char_from_buffer(struct buffer_type *b, enum error_type *err)
@@ -72,7 +72,7 @@ unsigned char get_char_from_buffer(struct buffer_type *b, enum error_type *err)
 			*err= BUFFER_FULL;
 			return -1;
 		};
-	*err=OK;
+	*err=BUFF_OK;
 	return reijo;
 	
 };
@@ -108,7 +108,7 @@ int print_buffer(struct buffer_type b, enum error_type *err)
 			amount++;
 		};
 	printf("\n");
-	*err=OK;
+	*err=BUFF_OK;
 	return amount;
 };
 
@@ -124,7 +124,7 @@ int add_string_to_buffer(struct buffer_type *b, unsigned char *s, enum error_typ
 				{
 					add_char_to_buffer(b, *(s+i), err);
 				};
-			*err=OK;
+			*err=BUFF_OK;
 			return check2;
 		}
 	else
@@ -142,7 +142,7 @@ int  get_string_from_buffer(struct buffer_type *b, unsigned char *dest, int len,
 		{
 			*(dest+i)=get_char_from_buffer(b, err);			
 		};
-	*err=OK;
+	*err=BUFF_OK;
 	return i-1;
 
 };

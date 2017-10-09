@@ -624,7 +624,7 @@ TEST(RingBuffer_get_string_from_buffef, get_string)
 {
   struct buffer_type b;
   error_type err;
-  unsigned char buff[MAX_BUFFER];
+  //unsigned char buff[MAX_BUFFER];
   unsigned char src[20]="Hello";
   unsigned char dst[20];
 
