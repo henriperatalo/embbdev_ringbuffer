@@ -29,7 +29,7 @@ signed int get_buffer_state(struct buffer_type b, enum error_type *err)
 		}
 	else
 		{
-		*err= BUFFER_OVER_FLOW;
+		*err= BUFFER_OVERRUN;
 		return -1;
 		};
 };
@@ -101,7 +101,7 @@ int print_buffer(struct buffer_type b, enum error_type *err)
 				}
 			else
 				{	
-					*err=EMPTY_BUFFER;
+					*err=BUFFER_EMPTY;
 					return -1;
 				};
 			printf("%c",c);
