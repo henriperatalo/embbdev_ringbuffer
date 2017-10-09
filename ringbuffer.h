@@ -12,7 +12,7 @@ struct buffer_type
   unsigned char *buffer;
   };
 
-enum{OK,BUFFER_OVER_FLOW,EMPTY_BUFFER,POINTER_ERROR,BUFFER_FULL};
+enum error_type{OK,BUFFER_OVER_FLOW,EMPTY_BUFFER,POINTER_ERROR,BUFFER_FULL};
   
 void init_buffer(struct buffer_type *b, unsigned char *buffer);
 void empty_buffer(struct buffer_type *b);
